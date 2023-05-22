@@ -1,0 +1,41 @@
+.revenue-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 30px;
+
+    .date-input {
+        display: flex;
+        gap: 200px;
+
+        div {
+            display: flex;
+            gap: 30px;
+
+            label {
+                width: 200px;
+            }
+
+            input {
+                padding-left: 10px;
+            }
+        }
+
+    }
+
+    .stat-content {
+        display: flex;
+        flex-direction: row;
+        width: 1000px;
+        gap: 100px;
+
+        .table-stat {
+            width: 35%;
+        }
+
+        .chart-stat {
+            width: 25%;
+        }
+
+    }
+}

@@ -1,0 +1,42 @@
+.user-content,
+.product-content,
+.order-content {
+    margin: 50px;
+    margin-left: 150px;
+    min-width: 950px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    table {
+
+        .table-title {
+            padding: 20px;
+        }
+
+        td {
+            padding: 20px 10px;
+        }
+    }
+
+    .search {
+        border: 1px solid gray;
+        padding: 10px 15px;
+        width: 300px;
+        border-radius: 60px;
+        background-color: white;
+        position: absolute;
+        right: 0;
+
+        input {
+            border: none;
+        }
+    }
+}
+
+.product-content {
+    .modal-add {
+        width: 180px;
+    }
+}

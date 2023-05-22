@@ -1,0 +1,19 @@
+.dashboard-content {
+    margin-left: 100px;
+
+    .function-container {
+        margin-top: 30px;
+        margin-bottom: 40px;
+        display: flex;
+        gap: 50px;
+    }
+
+    .dashboard-order {
+        p {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 36px;
+        }
+
+    }
+}

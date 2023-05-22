@@ -1,0 +1,131 @@
+.home {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Inter;
+  }
+
+  .main {
+    .homeBanner {
+      width: 100%;
+      height: 663px;
+    }
+
+    .best-seller {
+      margin: 30px;
+      margin-bottom: 0px;
+
+      h3 {
+        margin: 30px 0;
+        font-size: 33px;
+      }
+    }
+
+    .product {
+      border-radius: 5px;
+      filter: drop-shadow(0px 0.707471px 7.95904px rgba(0, 0, 0, 0.25));
+      width: 204.96px;
+      height: 295.47px;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .info-product {
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(80, 80, 80, 0.34);
+        bottom: 0;
+        left: 0;
+        width: 203.75px;
+        height: 80.83px;
+        padding-left: 12px;
+        padding-top: 5px;
+
+        .product-name {
+          text-decoration: none;
+          color: black
+        }
+      }
+
+      .cart-icon {
+        width: 31.21px;
+        height: 31.21px;
+        background: #898989;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 13px;
+        right: 13px;
+
+        i {
+          color: white;
+        }
+      }
+    }
+
+    .list-product {
+      display: flex;
+      flex-direction: row;
+      gap: 100px;
+    }
+
+    .new-arriver {
+      .title {
+        background-color: #FBE1E1;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+
+        p {
+          font-style: normal;
+          font-weight: 600;
+          font-size: 33.3084px;
+          line-height: 45px;
+          color: #000000;
+        }
+      }
+    }
+
+    .list-category {
+      margin-left: 40px;
+      display: flex;
+      gap: 70px;
+      justify-content: space-between;
+
+      .category {
+        width: 283.12px;
+        height: 281.27px;
+        border-radius: 5px;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+        }
+
+        .category-name {
+          width: 100%;
+          height: 50.43px;
+          font-weight: 600;
+          font-size: 22.2056px;
+          line-height: 30px;
+          color: #FFFFFF;
+          background: rgba(0, 0, 0, 0.3);
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          text-align: center;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}
