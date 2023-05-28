@@ -7,6 +7,9 @@ const postSignup = (email, password, checkedPassword) => {
 const postLogin = (email, password) => {
     return axios.post('/auth/login', { email, password });
 }
+const postUpdateUser = (user, id) => {
+    return axios.post("/auth/update", { user, id })
+}
 
 const getProduct = (count) => {
     return axios.get(`/product/getproduct?count=${count}`);
@@ -50,7 +53,19 @@ const getProductRenevue = (year) => {
 const postUpdateOrder = (id, role) => {
     return axios.post("/order/update", { id: id, role: role })
 }
+
+const postCancelOrder = (id) => {
+    return axios.post("/order/cancel", { id: id })
+}
+
+const getMyOrder = (limit, page, id) => {
+    return axios.get(`/order/myorder?page=${page}&limit=${limit}&id=${id}`)
+}
+
+const getOrderById = (id) => {
+    return axios.get(`/order/${id}`)
+}
 export {
     postSignup, postLogin, getProduct, getCategory, getProductById, createOrder, addNewProduct, getProductPaginate, getUserPageinate,
-    getOrderAdmin, getRevenue, getProductStat, getProductRenevue, postUpdateOrder
+    getOrderAdmin, getRevenue, getProductStat, getProductRenevue, postUpdateOrder, getOrderById, postUpdateUser, getMyOrder, postCancelOrder
 }

@@ -74,6 +74,7 @@ const OrderItem = (props) => {
                 </td>
             </tr>
             <DetailOrder
+                order={item}
                 show={show}
                 setShow={setShow}
             />

@@ -6,6 +6,8 @@ import { Link, useNavigate, redirect } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react"
 import UserSlice from "../../redux/UserSlice"
+import CartSlice from "../../redux/CartSlice"
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Header = () => {
     const users = useSelector((state) => state.user.user)
@@ -16,7 +18,8 @@ const Header = () => {
     const Logout = () => {
 
         dispatch(UserSlice.actions.deleteAll())
-        redirect("/login")
+        dispatch(CartSlice.actions.deleteAll())
+        navigate("/login")
 
     }
     useEffect(() => {
@@ -25,7 +28,7 @@ const Header = () => {
     }, [user])
     return (
         <div className="header">
-            <div className="logo" onClick={() => navigate('/')}>
+            <div className="logo" onClick={() => navigate(`${user.role == 2 ? "/admin" : "/"}`)}>
                 <img src={logo} />
             </div>
             {user ?
@@ -35,20 +38,30 @@ const Header = () => {
                             <Link to={"/"}>Trang chủ</Link>
                             <Link to={"/product"}>Sản phẩm</Link>
 
-                            <a href="/login"
-                                onClick={Logout}
-                            >
-                                Đăng xuất</a>
+                            <NavDropdown title={`Xin chào, ${user.username}`} id="nav-dropdown">
+                                <NavDropdown.Item eventKey="4.1" onClick={() => {
+                                    navigate("/myorder")
+                                }}>Đơn hàng của tôi </NavDropdown.Item>
+                                <NavDropdown.Item eventKey="4.2"
+                                    onClick={() => {
+                                        navigate("/profile")
+                                    }}
+                                >Thông tin của tôi </NavDropdown.Item>
+                                <NavDropdown.Item eventKey="4.3"
+                                    onClick={() => { Logout() }}
+                                >Đăng xuất</NavDropdown.Item>
+
+                            </NavDropdown>
                         </div></> :
 
                     <>
-                        <div className="link">
+                        <div className="link right">
                             <Link to={"/admin"}>Trang chủ</Link>
 
-                            <a href="/login"
-                                onClick={Logout}
-                            >
-                                Đăng xuất</a>
+                            <NavDropdown title={`Xin chào, ${user.username}`} id="nav-dropdown">
+                                <NavDropdown.Item eventKey="4.1" onClick={() => { Logout() }}>Đăng xuất</NavDropdown.Item>
+
+                            </NavDropdown>
                         </div>
                     </>
                 ) :
@@ -61,15 +74,21 @@ const Header = () => {
                 </>
 
             }
-            <div className="icon">
-                <span>
-                    <img src={search} />
-                </span>
-                <span>
-                    <img src={cart}
-                        onClick={() => navigate("/cart")} />
-                </span>
-            </div>
+
+            {user?.role == 2 ?
+                <></> :
+                <div className="icon">
+                    <span>
+                        <img src={search} />
+                    </span>
+                    <span>
+                        <img src={cart}
+                            onClick={() => navigate("/cart")} />
+                    </span>
+                </div>
+            }
+
+
         </div >
     )
 }

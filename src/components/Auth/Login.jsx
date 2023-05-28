@@ -23,9 +23,13 @@ const Login = (props) => {
             const user = {
                 id: data.id,
                 username: data.username || "",
+                email: data.email || "",
                 phone: data.phone || "",
                 address: data.address || "",
-                role: data.role
+                role: data.role,
+                dob: data.birthday ? data.birthday : "",
+                gender: data.gender
+
             }
             toast.success(res.EM)
             dispatch(UserSlice.actions.userLogin(user))

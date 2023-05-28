@@ -1,6 +1,16 @@
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { Link } from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { Link, redirect } from "react-router-dom"
+import UserSlice from '../../redux/UserSlice';
+
 const SiderBar = () => {
+
+    const dispatch = useDispatch()
+    const Logout = () => {
+
+        dispatch(UserSlice.actions.deleteAll())
+
+    }
     return (<>
         <Sidebar>
             <Menu>
@@ -14,7 +24,7 @@ const SiderBar = () => {
                     <MenuItem className='childMenu' component={<Link to="/admin/statproduct" />}> Sản phẩm</MenuItem>
                     <MenuItem className='childMenu' component={<Link to="/admin/statseller" />}> Bán chạy</MenuItem>
                 </SubMenu>
-                <MenuItem> Đăng xuất </MenuItem>
+                <MenuItem onClick={Logout} component={<Link to={"/login"} />}> Đăng xuất </MenuItem>
             </Menu>
         </Sidebar>;
     </>)

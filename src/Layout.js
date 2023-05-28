@@ -15,6 +15,8 @@ import DashBoardUser from "./components/Admin/Content/DashboardUser";
 import Revenue from "./components/Admin/Content/Stat/Revenue";
 import StatProduct from "./components/Admin/Content/Stat/StatProduct";
 import StatSeller from "./components/Admin/Content/Stat/StatSeller";
+import ProfileUser from "./components/User/ProfileUser";
+import OrderUser from "./components/User/OrderUser";
 
 const Layout = () => {
     return (
@@ -28,6 +30,8 @@ const Layout = () => {
                     <Route path="product/:id" element={<ProductDetailPage />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/checkout" element={<CheckOutPage />} />
+                    <Route path="/profile" element={<ProfileUser />} />
+                    <Route path="/myorder" element={<OrderUser />} />
                 </Route>
                 <Route path="/admin" element={<AdminDashboard />} >
                     <Route index element={<DashBoard />} />

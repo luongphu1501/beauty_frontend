@@ -8,6 +8,7 @@ nProgress.configure({
 })
 const instance = axios.create({
     baseURL: 'http://localhost:8080/api',
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -23,4 +24,5 @@ instance.interceptors.response.use(function (response) {
     // Do something with response error
     return error && error.response && error.response.data ? error.response.data : Promise.reject(error);
 });
+
 export default instance;

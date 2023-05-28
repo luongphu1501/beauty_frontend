@@ -4,9 +4,10 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
-import { getOrderById } from '../../../../services/apiServices';
+import { getOrderById } from '../../services/apiServices';
 
-const DetailOrder = (props) => {
+
+const UserOrderDetail = (props) => {
     const order = props.order
     const [detail, setDetail] = useState([])
 
@@ -107,4 +108,4 @@ const DetailOrder = (props) => {
     )
 }
 
-export default DetailOrder
+export default UserOrderDetail
