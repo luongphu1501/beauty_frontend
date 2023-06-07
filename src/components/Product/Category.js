@@ -6,7 +6,11 @@ const Category = (props) => {
             {listCategory.map(item => {
                 return (
                     <li>
-                        <input type="checkbox" value={item.name} id={"cate" + item.id} />
+                        <input type="radio" name="category" value={item.id} id={"cate" + item.id}
+                            onChange={(event) => {
+                                props.handleChangeCategory(event)
+                            }}
+                        />
                         <label htmlFor={"cate" + item.id}>{item.name}</label>
                     </li>
                 )

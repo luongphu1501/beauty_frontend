@@ -28,11 +28,11 @@ const Header = () => {
     }, [user])
     return (
         <div className="header">
-            <div className="logo" onClick={() => navigate(`${user.role == 2 ? "/admin" : "/"}`)}>
+            <div className="logo" onClick={() => navigate(`${user?.role == 2 ? "/admin" : "/"}`)}>
                 <img src={logo} />
             </div>
             {user ?
-                (user.role == 1 ?
+                (user?.role == 1 ?
                     <>
                         <div className="link">
                             <Link to={"/"}>Trang chủ</Link>

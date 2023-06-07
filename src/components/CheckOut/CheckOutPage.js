@@ -1,12 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux'
 import "../Cart/cart.scss"
 import CheckOutItem from './CheckOutItem'
-import { createOrder } from '../../services/apiServices'
+import { createOrder, postCreatePayment } from '../../services/apiServices'
 import { useNavigate, redirect } from "react-router-dom"
 import CartSlice from '../../redux/CartSlice'
 import { toast } from "react-toastify"
+import Form from 'react-bootstrap/Form';
+import { useState } from 'react'
+
+
 const CheckOutPage = () => {
-    const discount = 10
+    const [discount, setDisCount] = useState(0)
+    const [payment, setPayment] = useState("cod")
 
     const listProduct = useSelector((state) => state.cart.cart)
     const users = useSelector((state) => state.user.user)
@@ -25,6 +30,13 @@ const CheckOutPage = () => {
         const result = await createOrder(data)
 
 
+    }
+
+    const handlePaymentVisa = async () => {
+        const total = listProduct.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const url = await postCreatePayment(total)
+        console.log(url)
+        window.location.replace(url);
     }
 
     return (
@@ -67,11 +79,22 @@ const CheckOutPage = () => {
                         <span class="property">Tổng tiền </span>
                         <span>{listProduct.reduce((sum, item) => sum + item.price * item.quantity, 0) - discount}</span>
                     </div>
-                    <button className='btn'
+                    <div>
+                        <Form.Select aria-label="Default select example" size='lg' style={{ width: "300px" }}
+                            onChange={(event) => setPayment(event.target.value)}
+                        >
+                            <option value="cod">Thanh toán khi nhận hàng </option>
+                            <option value="visa">Thanh toán bằng thẻ Visa</option>
+                        </Form.Select>
+                    </div>
+                    <button className='btn btn-primary'
                         onClick={() => {
-                            handleCheckOut(listProduct, users)
-
-                            navigate("/")
+                            if (payment === "cod") {
+                                handleCheckOut(listProduct, users)
+                                navigate("/")
+                            } else if (payment === "visa") {
+                                handlePaymentVisa()
+                            }
                         }}
                     >Thanh toán </button>
                 </div>

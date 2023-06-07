@@ -30,9 +30,14 @@ const createOrder = (data) => {
 const addNewProduct = (data) => {
     return axios.post("/product/create", { data: data });
 }
-const getProductPaginate = (limit, page) => {
-    return axios.get(`/product/paginate?page=${page}&limit=${limit}`)
+const getProductPaginate = (limit, page, order) => {
+    return axios.get(`/product/paginate?page=${page}&limit=${limit}&order_by=${order}`)
 }
+
+const getProductByCategory = (limit, page, category_id) => {
+    return axios.get(`/product/category?page=${page}&limit=${limit}&category=${category_id}`)
+}
+
 const getUserPageinate = (limit, page) => {
     return axios.get(`/auth/paginate?page=${page}&limit=${limit}`)
 }
@@ -58,6 +63,10 @@ const postCancelOrder = (id) => {
     return axios.post("/order/cancel", { id: id })
 }
 
+const postCreatePayment = (total) => {
+    return axios.post("/order/payment", { total: total })
+}
+
 const getMyOrder = (limit, page, id) => {
     return axios.get(`/order/myorder?page=${page}&limit=${limit}&id=${id}`)
 }
@@ -65,7 +74,11 @@ const getMyOrder = (limit, page, id) => {
 const getOrderById = (id) => {
     return axios.get(`/order/${id}`)
 }
+const getSearchProduct = (limit, page, product) => {
+    return axios.get(`/product/search?page=${page}&limit=${limit}&product= ${product}`)
+}
 export {
     postSignup, postLogin, getProduct, getCategory, getProductById, createOrder, addNewProduct, getProductPaginate, getUserPageinate,
-    getOrderAdmin, getRevenue, getProductStat, getProductRenevue, postUpdateOrder, getOrderById, postUpdateUser, getMyOrder, postCancelOrder
+    getOrderAdmin, getRevenue, getProductStat, getProductRenevue, postUpdateOrder, getOrderById, postUpdateUser, getMyOrder, postCancelOrder,
+    getSearchProduct, getProductByCategory, postCreatePayment
 }

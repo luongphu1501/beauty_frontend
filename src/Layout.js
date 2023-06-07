@@ -17,6 +17,8 @@ import StatProduct from "./components/Admin/Content/Stat/StatProduct";
 import StatSeller from "./components/Admin/Content/Stat/StatSeller";
 import ProfileUser from "./components/User/ProfileUser";
 import OrderUser from "./components/User/OrderUser";
+import SuccessPage from "./components/Payment/SuccessPage";
+import CancelPage from "./components/Payment/CancelPage";
 
 const Layout = () => {
     return (
@@ -42,6 +44,8 @@ const Layout = () => {
                     <Route path="statproduct" element={<StatProduct />} />
                     <Route path="statseller" element={<StatSeller />} />
                 </Route>
+                <Route path="success" element={<SuccessPage />} />
+                <Route path="cancel" element={<CancelPage />} />
             </Routes >
 
         </>
