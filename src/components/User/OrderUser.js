@@ -23,8 +23,6 @@ const OrderUser = (props) => {
         }
     }
 
-
-
     useEffect(() => {
         getListOrder(4, 1)
     }, [])

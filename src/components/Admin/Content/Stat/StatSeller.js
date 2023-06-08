@@ -4,6 +4,7 @@ import { getProductStat } from "../../../../services/apiServices"
 import ChartReveNue from "./ChartRevenue"
 import Excel from 'exceljs';
 import { saveAs } from 'file-saver';
+import ProductPieChart from "./ProductPieChart";
 
 const StatSeller = () => {
     const [dataStat, setDataStat] = useState([])
@@ -148,16 +149,16 @@ const StatSeller = () => {
 
                     <div className="chart-stat">
                         <p>Bieu do</p>
-                        {dataStat ? <ChartReveNue
-                            months={dataStat.map(item => item.name)}
-                            revenues={dataStat.map(item => item.total_sell)}
+                        {dataStat ? <ProductPieChart
+                            names={dataStat.map(item => item.name)}
+                            sold={dataStat.map(item => item.total_sell)}
                             title={"Số lượng sản phẩm đã bán"}
                         /> : <></>}
 
                     </div>
                 </div>
             </div>
-            )
+
 
         </>
     )

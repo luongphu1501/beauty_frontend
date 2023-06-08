@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react"
 import "./share_stat.scss"
 import { getProductRenevue } from "../../../../services/apiServices"
-import ChartReveNue from "./ChartRevenue"
 import Excel from 'exceljs';
 import { saveAs } from 'file-saver';
 import { saveExcel } from "../../../../ultils/ExportReport";
+import ChartProduct from "./ChartProduct";
 
 const StatProduct = () => {
     const [dataStat, setDataStat] = useState([])
     const [year, setYear] = useState(2023)
     const [userdata, setUserdata] = useState([]);
-
-    // const workSheetName = 'Worksheet-1';
-    // const workbook = new Excel.Workbook();
-
 
     const getuserdata = async () => {
 
@@ -23,67 +19,7 @@ const StatProduct = () => {
         setUserdata(data);
     }
 
-    // const columns = [
-    //     { header: 'Sản phẩm ', key: 'name' },
-    //     { header: 'Doanh thu sản phẩm', key: 'product_renevue' },
 
-    // ];
-
-    // const saveExcel = async (userdata) => {
-    //     try {
-
-    //         const fileName = "workBookName";
-    //         const workSheetName = "worksheetName";
-
-
-    //         const worksheet = workbook.addWorksheet(workSheetName);
-
-    //         worksheet.columns = columns;
-
-    //         worksheet.getRow(1).font = { bold: true };
-
-    //         worksheet.columns.forEach(column => {
-    //             column.width = column.header.length + 5;
-    //             column.alignment = { horizontal: 'center' };
-    //         });
-
-    //         console.log(userdata)
-    //         // loop through data and add each one to worksheet
-    //         userdata.forEach(singleData => {
-    //             worksheet.addRow(singleData);
-    //         });
-
-
-    //         worksheet.eachRow({ includeEmpty: false }, row => {
-    //             // store each cell to currentCell
-    //             const currentCell = row._cells;
-
-    //             currentCell.forEach(singleCell => {
-
-    //                 const cellAddress = singleCell._address;
-
-    //                 // apply border
-    //                 worksheet.getCell(cellAddress).border = {
-    //                     top: { style: 'thin' },
-    //                     left: { style: 'thin' },
-    //                     bottom: { style: 'thin' },
-    //                     right: { style: 'thin' }
-    //                 };
-    //             });
-    //         });
-
-    //         const buf = await workbook.xlsx.writeBuffer();
-
-
-    //         saveAs(new Blob([buf]), `${fileName}.xlsx`);
-    //     } catch (error) {
-    //         console.error('<<<ERRROR>>>', error);
-    //         console.error('Something Went Wrong', error.message);
-    //     } finally {
-
-    //         workbook.removeWorksheet(workSheetName);
-    //     }
-    // };
     const getData = async () => {
         const res = await getProductRenevue()
         console.log(res.data)
@@ -126,7 +62,7 @@ const StatProduct = () => {
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Sản phẩm</th>
-                                    <th scope="col">Số Lượng</th>
+                                    <th scope="col">Doanh thu</th>
 
                                 </tr>
                             </thead>
@@ -150,16 +86,16 @@ const StatProduct = () => {
 
                     <div className="chart-stat">
                         <p>Bieu do</p>
-                        {dataStat ? <ChartReveNue
+                        {dataStat ? <ChartProduct
                             months={dataStat.map(item => item.name)}
                             revenues={dataStat.map(item => item.product_renevue)}
-                            title={"Số lượng sản phẩm đã bán"}
+                            title={"Doanh thu sản phẩm"}
                         /> : <></>}
 
                     </div>
                 </div>
             </div>
-            )
+
 
         </>
     )

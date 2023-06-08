@@ -1,11 +1,11 @@
 import "./userdashboard.scss"
 import { Link } from "react-router-dom"
-
+import avatar from "../../assets/img/avatar.png"
 const UserDashboard = () => {
     return (
         <div className="user-dashboard">
             <div className="user">
-                <span>Tên khách hàng: </span>
+                <img src={avatar} alt="avatar user" />
                 <p>ABC XYZ</p>
             </div>
             <div className="group">

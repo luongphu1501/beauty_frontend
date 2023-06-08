@@ -5,7 +5,7 @@ import ChartReveNue from "./ChartRevenue"
 import { CSVLink } from 'react-csv';
 import Excel from 'exceljs';
 import { saveAs } from 'file-saver';
-
+import { saveExcel } from "../../../../ultils/ExportRevenue";
 
 const Revenue = () => {
 
@@ -25,69 +25,6 @@ const Revenue = () => {
         console.log(data);
         setUserdata(data);
     }
-
-    const columns = [
-        { header: 'Tháng ', key: 'month' },
-        { header: 'Doanh thu', key: 'month_revenue' },
-
-    ];
-
-    const saveExcel = async (userdata) => {
-        try {
-
-            const fileName = "workBookName";
-            const workSheetName = "worksheetName";
-
-
-            const worksheet = workbook.addWorksheet(workSheetName);
-
-            worksheet.columns = columns;
-
-            worksheet.getRow(1).font = { bold: true };
-
-            worksheet.columns.forEach(column => {
-                column.width = column.header.length + 5;
-                column.alignment = { horizontal: 'center' };
-            });
-
-            console.log(userdata)
-            // loop through data and add each one to worksheet
-            userdata.forEach(singleData => {
-                worksheet.addRow(singleData);
-            });
-
-
-            worksheet.eachRow({ includeEmpty: false }, row => {
-                // store each cell to currentCell
-                const currentCell = row._cells;
-
-                currentCell.forEach(singleCell => {
-
-                    const cellAddress = singleCell._address;
-
-                    // apply border
-                    worksheet.getCell(cellAddress).border = {
-                        top: { style: 'thin' },
-                        left: { style: 'thin' },
-                        bottom: { style: 'thin' },
-                        right: { style: 'thin' }
-                    };
-                });
-            });
-
-            const buf = await workbook.xlsx.writeBuffer();
-
-
-            saveAs(new Blob([buf]), `${fileName}.xlsx`);
-        } catch (error) {
-            console.error('<<<ERRROR>>>', error);
-            console.error('Something Went Wrong', error.message);
-        } finally {
-
-            workbook.removeWorksheet(workSheetName);
-        }
-    };
-
 
     const getData = async () => {
         const res = await getRevenue(year)
@@ -151,7 +88,7 @@ const Revenue = () => {
                         </tbody>
                     </table>
                     <div className="btn btn-secondary" onClick={() => {
-                        saveExcel(userdata)
+                        saveExcel(userdata, year)
                     }}>
                         Xuât báo cáo
                     </div>

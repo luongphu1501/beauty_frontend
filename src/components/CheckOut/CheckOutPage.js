@@ -18,6 +18,14 @@ const CheckOutPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const checkUser = (users) => {
+        const user = users[0];
+        if (user.address && user.username && user.phone) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     const handleCheckOut = async (listProduct, user) => {
         const data = {
@@ -28,8 +36,6 @@ const CheckOutPage = () => {
 
         toast.success("Đặt hàng thành công ")
         const result = await createOrder(data)
-
-
     }
 
     const handlePaymentVisa = async () => {
@@ -89,11 +95,15 @@ const CheckOutPage = () => {
                     </div>
                     <button className='btn btn-primary'
                         onClick={() => {
-                            if (payment === "cod") {
-                                handleCheckOut(listProduct, users)
-                                navigate("/")
-                            } else if (payment === "visa") {
-                                handlePaymentVisa()
+                            if (checkUser(users)) {
+                                if (payment === "cod") {
+                                    handleCheckOut(listProduct, users)
+                                    navigate("/")
+                                } else if (payment === "visa") {
+                                    handlePaymentVisa()
+                                }
+                            } else {
+                                toast.error("Bạn cần cập nhật thông tin trước khi mua hàng");
                             }
                         }}
                     >Thanh toán </button>
