@@ -26,7 +26,7 @@ const AddProduct = (props) => {
             name, price, quantity, categoy, description, img
         }
         const res = await addNewProduct(data)
-        await props.getListProduct(4, 1)
+        props.getListProduct(4, 1)
 
     }
 

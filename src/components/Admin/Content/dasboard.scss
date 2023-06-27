@@ -5,7 +5,28 @@
         margin-top: 30px;
         margin-bottom: 40px;
         display: flex;
+
         gap: 50px;
+        justify-content: space-between;
+
+        .dashboard-card {
+            border: 1px solid gray;
+            padding: 15px 15px 5px 15px;
+            box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+            display: flex;
+            gap: 30px;
+            border-radius: 5px;
+
+            .card-content {
+                p {
+                    font-size: 20px;
+                }
+            }
+
+            .card-icon {
+                font-size: 30px;
+            }
+        }
     }
 
     .dashboard-order {

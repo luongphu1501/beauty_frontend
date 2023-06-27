@@ -3,18 +3,18 @@ import Content from "../Content"
 import AddProduct from "./AddProduct"
 import "./share.scss"
 import { BsSearch } from "react-icons/bs"
-import { getCategory, getProductPaginate } from "../../../services/apiServices"
+import { deleteProduct, getCategory, getProductPaginate } from "../../../services/apiServices"
 import ReactPaginate from 'react-paginate';
-
+import { toast } from "react-toastify"
 const DashBoardProduct = () => {
     const [listCategory, setListCategory] = useState([])
     const [pageCount, setPageCount] = useState()
     const [listProduct, setListProduct] = useState([]);
-
+    const [current, setCurrent] = useState(0)
 
 
     const getListProduct = async (limit, page) => {
-        const res = await getProductPaginate(limit, page);
+        const res = await getProductPaginate(limit, page, "");
         if (res) {
             setListProduct(res.data)
             setPageCount(res.total_page)
@@ -30,8 +30,13 @@ const DashBoardProduct = () => {
         }
     }
 
-    const deleteProduct = (id) => {
-
+    const handleDelete = async (id) => {
+        const res = await deleteProduct(id)
+        if (res && res.EM) {
+            toast.success("Xóa sản phẩm thành công")
+            setCurrent(0)
+            getListProduct(4, 1)
+        }
     }
 
     useEffect(() => {
@@ -40,10 +45,7 @@ const DashBoardProduct = () => {
     }, [])
     return (
         <div className="product-content">
-            <div className="search">
-                <BsSearch />
-                <input type="text" placeholder="Tìm kiếm" />
-            </div>
+
             <div className="modal-add">
                 <AddProduct
                     listCategory={listCategory}
@@ -75,7 +77,7 @@ const DashBoardProduct = () => {
                                 <td>{item.description}</td>
                                 <td>{item.quantity}</td>
                                 <td><div className="btn btn-secondary"
-                                    onClick={() => deleteProduct(item.id)}
+                                    onClick={() => handleDelete(item.id)}
                                 >Xóa</div>
                                 </td>
 
@@ -89,6 +91,7 @@ const DashBoardProduct = () => {
             <ReactPaginate
                 nextLabel="Next >"
                 onPageChange={(event) => {
+                    setCurrent(event.selected)
                     getListProduct(4, event.selected + 1)
                 }}
                 pageRangeDisplayed={3}
@@ -107,7 +110,7 @@ const DashBoardProduct = () => {
                 containerClassName="pagination"
                 activeClassName="active"
                 renderOnZeroPageCount={null}
-                forcePage={0}
+                forcePage={current}
             />
         </div>
     )

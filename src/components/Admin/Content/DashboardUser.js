@@ -27,11 +27,8 @@ const DashBoardUser = () => {
     return (
         <>
             <div className="user-content">
-                <div className="search">
-                    <BsSearch />
-                    <input type="text" placeholder="Tìm kiếm" />
-                </div>
-                <p>Người dùng </p>
+
+                <h4>Người dùng </h4>
                 <table className="table table-striped" style={{ border: "1px solid gray" }}>
                     <thead className='table-title'>
                         <tr>

@@ -36,6 +36,13 @@ const ProductDetailPage = () => {
         dispatch(CartSlice.actions.addToCart(data))
     }
 
+    const handleClickBuy = (id, name, quantity, price, image) => {
+        const data = { id, name, quantity, price, image }
+        console.log(data)
+        dispatch(CartSlice.actions.addToCart(data))
+        navigate("/checkout")
+    }
+
     useEffect(() => {
         getDetailProduct(id)
     }, [url_infor])
@@ -96,7 +103,14 @@ const ProductDetailPage = () => {
                                             toast.success("THêm vào giỏ hàng thành công")
                                         }}
                                     >Add to cart</button>
-                                    <button class="buy btn">Buy</button>
+                                    <button class="buy btn"
+                                        style={{
+                                            color: "white"
+                                        }}
+                                        onClick={() => {
+                                            handleClickBuy(product.id, product.name, count, product.price, product.image)
+                                        }}
+                                    >Buy</button>
                                 </div>
                             </div>
 

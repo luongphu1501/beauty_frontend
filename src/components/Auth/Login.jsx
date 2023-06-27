@@ -35,7 +35,7 @@ const Login = (props) => {
             dispatch(UserSlice.actions.userLogin(user))
             if (user.role == 1) {
                 navigate("/")
-            } else {
+            } else if (user.role == 2) {
                 navigate("/admin")
             }
 

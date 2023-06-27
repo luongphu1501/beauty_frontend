@@ -21,6 +21,11 @@ export default createSlice({
         // deleteItem: (state, action) => {
         //     state.filter(item => item.id !== action.payload.id)
         // },
+        deleteItem: (state, action) => {
+            const temp = state.cart.filter((item) => +item.id !== +action.payload)
+            state.cart = temp
+        },
+
         deleteAll: (state, action) => {
             state.cart = []
         }

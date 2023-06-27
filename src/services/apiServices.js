@@ -77,8 +77,17 @@ const getOrderById = (id) => {
 const getSearchProduct = (limit, page, product) => {
     return axios.get(`/product/search?page=${page}&limit=${limit}&product= ${product}`)
 }
+const getDataDashboard = () => {
+    return axios.get("/order/data/dashboard");
+}
+const getDataChart = () => {
+    return axios.get("/order/data/chart");
+}
+const deleteProduct = (id) => {
+    return axios.post("/product/delete", { id: id })
+}
 export {
     postSignup, postLogin, getProduct, getCategory, getProductById, createOrder, addNewProduct, getProductPaginate, getUserPageinate,
     getOrderAdmin, getRevenue, getProductStat, getProductRenevue, postUpdateOrder, getOrderById, postUpdateUser, getMyOrder, postCancelOrder,
-    getSearchProduct, getProductByCategory, postCreatePayment
+    getSearchProduct, getProductByCategory, postCreatePayment, getDataDashboard, getDataChart, deleteProduct
 }

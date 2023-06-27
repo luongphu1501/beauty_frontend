@@ -21,7 +21,9 @@ const Revenue = () => {
     const getuserdata = async () => {
 
         const res = await getRevenue(year)
-        const data = res.data;
+        const data = res.data.sort((a, b) => {
+            return a.month - b.month
+        });
         console.log(data);
         setUserdata(data);
     }

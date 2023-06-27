@@ -31,11 +31,8 @@ const DashBoardOrder = () => {
     }, [])
     return (
         <div className="order-content">
-            <div className="search">
-                <BsSearch />
-                <input type="text" placeholder="Tìm kiếm" />
-            </div>
-            <p>ĐƠn hàng</p>
+
+            <h2>Đơn hàng</h2>
             <table className="table table-striped" style={{ border: "1px solid gray" }}>
                 <thead className='table-title'>
                     <tr>

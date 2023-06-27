@@ -11,9 +11,9 @@ const CheckOutItem = (props) => {
             <td>${item.price}</td>
             <td>
                 <div class="choose-number">
-                    <p>-</p>
+
                     <input type="number" value={item.quantity} />
-                    <p>+</p>
+
                 </div>
             </td>
             <td>{item.price * item.quantity}</td>
